@@ -1,0 +1,32 @@
+Description: useradd: process flags before testing them
+ We check rflg for requested system user and do not grant subuids in that
+ case - however we were doing so before actually processing command line
+ flags.  Process flags first.
+ This needs to go upstream.
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/shadow/+bug/1545884
+Author: Serge Hallyn <serge.hallyn@gmail.com>
+Forwarded: no
+
+Index: shadow-4.2/src/useradd.c
+===================================================================
+--- shadow-4.2.orig/src/useradd.c
++++ shadow-4.2/src/useradd.c
+@@ -2037,6 +2037,9 @@ int main (int argc, char **argv)
+ #ifdef SHADOWGRP
+ 	is_shadow_grp = sgr_file_present ();
+ #endif
++
++	process_flags (argc, argv);
++
+ #ifdef ENABLE_SUBIDS
+ 	is_sub_uid = sub_uid_file_present () && !rflg &&
+ 	    (!user_id || (user_id <= uid_max && user_id >= uid_min));
+@@ -2046,8 +2049,6 @@ int main (int argc, char **argv)
+ 
+ 	get_defaults ();
+ 
+-	process_flags (argc, argv);
+-
+ #ifdef ACCT_TOOLS_SETUID
+ #ifdef USE_PAM
+ 	{
