@@ -39,3 +39,5 @@
 userns/subuids-nonlocal-users
 1011_extrausers_toggle.patch
 1021_no_subuids_for_system_users.patch
+CVE-2017-2616.patch
+CVE-2016-6252.patch

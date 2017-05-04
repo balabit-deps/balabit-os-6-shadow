@@ -1,3 +1,16 @@
+shadow (1:4.2-3.1ubuntu5.2) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: su could be used to kill arbitrary processes.
+    - debian/patches/CVE-2017-2616.patch: Check process's exit status before
+      sending signal
+    - CVE-2017-2616
+  * SECURITY UPDATE: getulong() function could accidentally parse negative
+    numbers as large positive numbers.
+    - debian/patches/CVE-2016-6252.patch: parse directly into unsigned long
+    - CVE-2016-6252
+
+ -- Seth Arnold <seth.arnold@canonical.com>  Thu, 04 May 2017 01:00:19 -0700
+
 shadow (1:4.2-3.1ubuntu5) xenial; urgency=medium
 
   * debian/patches/1010_extrausers.patch:
