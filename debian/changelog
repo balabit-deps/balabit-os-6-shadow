@@ -1,3 +1,13 @@
+shadow (1:4.2-3.1ubuntu5.3) xenial-security; urgency=medium
+
+  * REGRESSION UPDATE: The patch for CVE-2017-2616 introduced a regression.
+    If su received a signal like SIGTERM it wasn't propagated to the child.
+    - debian/patches/CVE-2017-2616-regression.patch: Do not reset the
+      pid_child to 0 if the child process is still running.
+    Thanks to Tobias Stoeckmann for the fix and Radu Duta for the report.
+
+ -- Seth Arnold <seth.arnold@canonical.com>  Mon, 15 May 2017 19:26:55 -0700
+
 shadow (1:4.2-3.1ubuntu5.2) xenial-security; urgency=medium
 
   * SECURITY UPDATE: su could be used to kill arbitrary processes.
