@@ -1,3 +1,14 @@
+shadow (1:4.2-3.1ubuntu5.4) xenial; urgency=medium
+
+  * patches/1012_extrausers_chfn.patch:
+    - add --extrausers option to "chfn" (LP: #1495580)
+  * debian/patches/1013_extrausers_deluser.patch:
+    - add --extrausers option to "userdel" (LP: #1659534)
+  * debian/patches/2000_fix-su-pam-env-handling:
+    - fix "su -l" to correctly use pam_getenvlist (LP: #984390)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Fri, 22 Mar 2019 20:22:06 +0100
+
 shadow (1:4.2-3.1ubuntu5.3) xenial-security; urgency=medium
 
   * REGRESSION UPDATE: The patch for CVE-2017-2616 introduced a regression.
